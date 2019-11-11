@@ -1,0 +1,90 @@
+/*if(strcmp(origin,"<SELECT>\n")==0){          //originが<SELECT>の時 
+      if_flag=true;
+      select_num=0;
+    }
+    else if(strcmp(origin,"<SELECT_END>\n")==0){ //originが<SELECT_END>の時
+      if_flag=false;
+      usleep(1*90000);
+      refresh();
+      continue;
+    }
+
+----------------------------------------------------------------------------------
+    
+    //<>以外のものを記述
+    if(if_flag==true){
+      //originが<SELECT>文と同じ時は出力しない
+      if(strcmp(origin,"<SELECT>\n")!=0){
+        printw("%s",origin);
+        select_num++;
+        //printw("through\n");
+      }
+        continue;  
+    }*/
+    
+    //選択肢を動的にする場合(未解決)
+        /*for(i=0;i<select_num;i++){
+          if(ch == 'a'){
+            printw("same\n");
+            check=true;
+            //どの数字が押されたかによって分岐する
+            sprintf(case_pattern,"<CASE %c\n>",ch);
+            break;
+          }
+        }
+        */
+        
+ ----------------------------------------------------------------------------------
+ 
+ /*
+    if(strcmp(origin,"<CASE_LAUNCH>\n")==0){          //originが<CASE_LAUNCH>の時 
+      case_flag=true;
+      
+      //originが<CASE_LAUNCH>にいるときに選択肢を選ぶ
+      while(1){
+        check=false;
+        ch=getch();
+        //printw("ch=%c\n",ch);
+        switch(ch){
+          case '1':
+            check=true;
+            sprintf(case_pattern,"<CASE %c>\n",ch);
+            break;
+          case '2':
+            check=true;
+            sprintf(case_pattern,"<CASE %c>\n",ch);
+            break;
+          case '3':
+            check=true;
+            sprintf(case_pattern,"<CASE %c>\n",ch);
+            break;
+          default:
+            //printw("strange\n");
+            continue;    
+        }
+        
+       break;
+      }
+      //printw("case_pattern=%s\n",case_pattern);
+      refresh();
+      continue;    
+    }
+    
+    //flagが立っていれば指定されたCASEまで飛ぶ
+    if(case_flag==true && lcase_flag==false){
+      if(strcmp(origin,case_pattern)==0){
+        lcase_flag=true;//<CASE X>にoriginがあるとき
+      }
+      else if(strcmp(origin,"<CASE_TERMINAL>\n")==0)
+        case_flag=false;
+      continue;
+      
+    }
+    
+    else if(case_flag==true && lcase_flag==true){
+      if(strcmp(origin,"<CASE_END>\n")==0){
+        lcase_flag=false;
+        continue;
+      }
+    }
+    */
