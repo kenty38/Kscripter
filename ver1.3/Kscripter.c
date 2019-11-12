@@ -6,9 +6,9 @@ void dis_pause(int Lline,char now[LINE_MAX][N]);
 int main(void){
   
   int i;
-  int Load_line=0;                //何行読み込んだかを記憶しておく変数
-  int len;								        //文字配列の長さを格納する変数
-  int select_num;					        //選択肢の個数(10個まで)
+  int Load_count=0;                //何行読み込んだかを記憶しておく変数
+  int line_length;								        //文字配列の長さを格納する変数
+  //int select_num;					        //選択肢の個数(10個まで)
   int ch;									        //getch()の中身を保存する関数    
   
   char origin[N];					        //txtから一行コピーした文字配列
@@ -18,9 +18,10 @@ int main(void){
   
   char fname[]="text/text2.txt";
   
-  bool if_flag=false;			        //false:SELECTなし , true:SELECTあり
+  bool select_flag=false;			        //false:SELECTなし , true:SELECTあり
   bool if_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
   bool skip_flag=false;
+  
 
   //ファイルを開く。失敗するとNULLを返す
   fp=fopen(fname,"r");
@@ -47,26 +48,26 @@ int main(void){
     //nowlogが24行に達した時、今までのログをバックログ文字配列に格納し、
     //バックログ呼び出し時にはbacklogを用いる。
     //これは文字が画面にいっぱいになるたびに繰り返される
-    if(Load_line%LINE_MAX==0){
+    if(Load_count%LINE_MAX==0){
       erase();
       for(i=0;i<LINE_MAX;i++)
         strcpy(backlog[i],nowlog[i]);
     }
       
     //一行の長さを図る(\n込み)
-    len=strlen(origin);
+    line_length=strlen(origin);
   
     //<<SELECT管理>>
-    if(select_opt(origin,&if_flag,&select_num,&case_flag,&lcase_flag,&Load_line,nowlog)==REACT)
+    if(select_opt(origin, &select_flag, &case_flag, &lcase_flag, &Load_count, nowlog)==REACT)
       continue;
     //<<SELECT終了>>
     
     //<<CASE管理>>
-    if(case_binary(origin,&case_flag,&lcase_flag,case_pattern,&if_start,Load_line,nowlog,backlog)==REACT)
+    if(case_binary(origin, &case_flag, &lcase_flag, case_pattern, &if_start, Load_count, nowlog, backlog)==REACT)
       continue;
     //<<CASE終了>>
 	    
-    //画面出力
+    //画面出力(case_binaryにもgetchがあるため、その関数からリアクションがある場合はgetchを起動させない(おそらく))
     if(if_start==false)
     	ch=getch();
     else
@@ -75,25 +76,24 @@ int main(void){
     switch(ch){
     	
     	case 'b':
-    	  b_log(backlog,nowlog,&Load_line);
+    	  b_log(backlog, nowlog, &Load_count);
     	  continue;
     	  
     	case 'p':
-    		dis_pause(Load_line,nowlog);
+    		dis_pause(Load_count, nowlog);
     		continue;
     	
     	case 's':
-    		save(before_pos,case_flag,lcase_flag,Load_line,nowlog);
+    		save(before_pos, case_flag, lcase_flag, Load_count, nowlog);
     		//printw("save_byte=%ld\n",save_byte);
     		continue;
     		
     	default:
-    		write_text(len,origin,nowlog,&Load_line);
+    		write_text(line_length, origin, nowlog, &Load_count);
     		break;
     }
+    
     //一つ前のバイト数を覚えさせておく
-    
-    
     before_pos=ftell(fp);
       
   }

@@ -11,11 +11,10 @@
 
 #include "function.h"
 
-int select_opt(char original[], bool *flag,int *select_number,int *cflag,int *lcflag,int *Lline,char now[LINE_MAX][N]){
+int select_opt(char original[], bool *flag,int *cflag,int *lcflag,int *Lline,char now[LINE_MAX][N]){
 
   if(strcmp(original,"<SELECT>\n")==SAME && *cflag==*lcflag){          //originが<SELECT>の時 
     *flag=true;
-    *select_number=0;
     //もしif文がLINE_MAXを超過するならば、nowlogを新しいものに切り替える
     if(*Lline%LINE_MAX>=LINE_MAX-2){
       while(*Lline==LINE_MAX)
@@ -38,7 +37,6 @@ int select_opt(char original[], bool *flag,int *select_number,int *cflag,int *lc
         strcpy(now[(*Lline)%LINE_MAX],original);
         *Lline=*Lline+1;
         //printw("%s\n",now[*Lline-1]);
-        select_number++;
       }
         return REACT;  
     }
