@@ -14,8 +14,7 @@ void b_log(char back[LINE_MAX][N],char now[LINE_MAX][N],int *Lline){
   }
 
 	backlog_erase();
-	
-	//現在のテキストを再度表示
+
   for(i=0;i<*Lline%LINE_MAX;i++)
     printw("%s",now[i]);
     

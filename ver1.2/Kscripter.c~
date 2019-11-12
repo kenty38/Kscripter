@@ -16,10 +16,14 @@ int main(int argc, char *argv[]){
   char nowlog[LINE_MAX][N];       //映しだされている画面の文字を格納
   char backlog[LINE_MAX][N];			//バックログ表示に用いる文字列
   
-  char fname[]="text/text2.txt";
+  char fname[]="text/text.txt";
   
-  bool if_flag=false;			        //false:SELECTなし , true:SELECTあり
-  bool if_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
+  bool select_flag=false;			        //false:SELECTなし , true:SELECTあり(select_flag)
+  bool select_decide=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ(select_decide)
+  
+  int case_flag;				//<CASE_LAUNCH> , <CASE_TERMINAL>用のフラグ 
+	int lcase_flag;				//little_case_flag:<X.CASE Y> , <CASE_END>用のフラグ (2つともinitialize.cで初期化)
+  
   bool skip_flag=false;
 
   //ファイルを開く。失敗するとNULLを返す
@@ -29,24 +33,22 @@ int main(int argc, char *argv[]){
     exit(1);
   }
   
-  
 	//初期化
-	initialize();
+	initialize(&case_flag,&lcase_flag);
 
   //タイトル画面作成
-  Load_first_display();
+  Load_first_display(&case_flag,&lcase_flag);
 
   
 	//<<txtデータが末端に行くまで繰り返す>>
   while(fgets(origin,N,fp)!=NULL){
-    
+ 
     //改行文字のみの行は無視
     if(*origin=='\n')
     	continue;
     
-    //nowlogが24行に達した時、今までのログをバックログ文字配列に格納し、
-    //バックログ呼び出し時にはbacklogを用いる。
-    //これは文字が画面にいっぱいになるたびに繰り返される
+		
+		//LINE_MAXの時、画面をクリアにしバックログに保存
     if(Load_line%LINE_MAX==0){
       erase();
       for(i=0;i<LINE_MAX;i++)
@@ -57,20 +59,20 @@ int main(int argc, char *argv[]){
     len=strlen(origin);
   
     //<<SELECT管理>>
-    if(select_opt(origin,&if_flag,&select_num,&case_flag,&lcase_flag,&Load_line,nowlog)==-1)
+    if(select_opt(origin,&select_flag,&select_num,&case_flag,&lcase_flag,&Load_line,nowlog)==REACT)
       continue;
     //<<SELECT終了>>
     
     //<<CASE管理>>
-    if(case_binary(origin,&case_flag,&lcase_flag,case_pattern,&if_start,Load_line,nowlog,backlog)==-1)
+    if(case_binary(origin,&case_flag,&lcase_flag,case_pattern,&select_decide,Load_line,nowlog,backlog)==REACT)
       continue;
     //<<CASE終了>>
 	    
     //画面出力
-    if(if_start==false)
+    if(select_decide==false)
     	ch=getch();
     else
-      if_start=false;
+      select_decide=false;
       
     switch(ch){
     	

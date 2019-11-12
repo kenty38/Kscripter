@@ -52,7 +52,7 @@ int case_binary(char original[],int *c_flag,int *lc_flag,char pattern[],bool *st
           	continue;  
             
           case 's':
-          	save(before_pos,*c_flag-1,*lc_flag,Lline,now);
+          	save(before_pos,case_flag-1,lcase_flag,Lline,now);
           	continue;
           	
           default:

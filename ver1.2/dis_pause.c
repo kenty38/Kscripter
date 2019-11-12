@@ -24,7 +24,7 @@ void dis_pause(int Lline,char now[LINE_MAX][N]){
 				for(i=0;i<Lline%LINE_MAX;i++)
 					printw("%s",now[i]);
 				break;
-					
+				
 			case 'e':
 				endwin();
 				exit(1);

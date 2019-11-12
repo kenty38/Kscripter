@@ -3,7 +3,7 @@
 *void select_opt(...) 
 *選択肢を一気に出力する関数。																	 	*
 * originが<SELECT>にあるときにフラグを立たせる。									 	*
-* <CASE>が入れ子構造の時,<IF>が飛ばせるようにcase_flagを利用する。(?) 	*
+* <CASE>が入れ子構造の時,<IF>が飛ばせるようにcase_flagを利用する。 	*
 *																														　	*
 * originが<SELECT_END>にある時はフラグを折り、<SELECT>と						*
 * <SELECT_END>に挟まれた文章を出力する。													*

@@ -1,8 +1,7 @@
 
 #include "function.h"
 
-//セーブメッセージを一瞬出すだけの関数
-void display_save_immd(void);
+void display_save(void);
 
 int save(long byte_num,int cflag,int lcflag,int Lline,char now[LINE_MAX][N]){
 		FILE *fp_save;
@@ -18,26 +17,21 @@ int save(long byte_num,int cflag,int lcflag,int Lline,char now[LINE_MAX][N]){
 		
 		fprintf(fp_save,"%ld,%d,%d\n",byte_num,cflag,lcflag);
 		
-		display_save_immd();
-		
-		//現在のテキストを再度表示
-		for(i=0;i<Lline%LINE_MAX;i++)
-		  printw("%s",now[i]);
+		display_save();
+		write_nowlog(Lline,now);
 		
 		fseek(fp,before_pos,SEEK_SET);
 		
 		fclose(fp_save);		
-		
 		return 1;
 }
 
 
-/*-----------------------------------------------------------------*/
-void display_save_immd(void){
+
+void display_save(void){
 	erase();
 	printw("\n\n\n\n\n\n\n<<<save_complete!!>>>\n");
 	refresh();
-	sleep(2);//2秒停止
+	sleep(2);
 	erase();
 }
-

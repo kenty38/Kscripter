@@ -4,7 +4,7 @@
 void display_menu(char *v_title, char *v_start, char *v_load, char *v_exit);
 void finish_function(void);
 
-void Load_first_display(void){
+void Load_first_display(int *c_flag, int *lc_flag){
 	FILE *fp_load;
 	int ch;
 
@@ -12,6 +12,7 @@ void Load_first_display(void){
 
 	char fname[]="save/save.txt";
 	
+	//メニュー画面は事前に準備する可能性があるため全削除の可能性あり
 	char title[]= {"title display\n\n\n\n\n\n\n"};
 	char start[]= {"(s)start\n\n"};
 	char load[]=  {"(l)load\n\n"};
@@ -59,6 +60,8 @@ void Load_first_display(void){
 }
 
 
+//-----------------------------------------------------------------------------------
+
 void display_menu(char *v_title, char *v_start, char *v_load, char *v_exit){
   printw(v_title);
 	printw(v_start);
@@ -69,7 +72,7 @@ void display_menu(char *v_title, char *v_start, char *v_load, char *v_exit){
 
 void finish_function(void){
   refresh();
-  usleep(2*100000);	//2秒待機
+  sleep(2);	//2秒待機
 	erase();
 }
 

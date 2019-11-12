@@ -16,7 +16,6 @@ void write_text(int length,char original[],char now[LINE_MAX][N],int *Lline){
   strcpy(now[(*Lline)%LINE_MAX],original);
   //printw("Load_line=%d\n",*Lline);
   *Lline=*Lline+1;
-  
   for(i=0;i<length;i++){
     printw("%c",original[i]);
     refresh();

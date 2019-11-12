@@ -5,7 +5,6 @@ do you know which type i like idol type?
 (2)cute
 (3)passion
 <SELECT_END>
-
 <CASE_LAUNCH>
 <CASE 1>
 good!!!!!

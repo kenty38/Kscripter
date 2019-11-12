@@ -8,6 +8,9 @@
 #define N 256
 #define LINE_MAX 22
 
+#define SAME 0
+#define REACT -1
+
 FILE *fp;
 
 enum FLAG{
@@ -15,16 +18,14 @@ enum FLAG{
   OFF
 };
 
-int case_flag;				//<CASE_LAUNCH> , <makeCASE_TERMINAL>用のフラグ 
-int lcase_flag;				//<X.CASE Y> , <CASE_END>用のフラグ (2つともinitialize.cで初期化)
 
 long before_pos;        //一つ前のfpの位置を保存
 
 
 //function
-extern void initialize(void);
+extern void initialize(int *c_flag, int *lc_flag);
 
-extern void Load_first_display(void);
+extern void Load_first_display(int *c_flag, int *lc_flag);
 
 extern int Load(void);
 
@@ -38,4 +39,6 @@ extern void write_text(int length,char original[],char now[LINE_MAX][N],int *Lli
 
 extern int select_opt(char original[],bool *flag,int *select_number,int *cflag,int *lcflag,int *Lline,char now[LINE_MAX][N]);
 
-extern int case_binary(char original[],int *flag,int *lflag,char pattern[],bool *start,int Lline,char now[LINE_MAX][N],char back[LINE_MAX][N]);
+extern int case_binary(char original[],int *c_flag,int *lc_flag,char pattern[],bool *start,int Lline,char now[LINE_MAX][N],char back[LINE_MAX][N]);
+
+

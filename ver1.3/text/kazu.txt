@@ -1,0 +1,26 @@
+Who is your great senior laboratry member?
+
+<SELECT>
+(1)kazuhiro
+(2)kazuyuki
+(3)kazutoshi
+<SELECT_END>
+
+<CASE_LAUNCH>
+
+<1.CASE 1>
+That's right!!!
+He is a great person.
+I respect him very well.
+<CASE_END>
+
+<1.CASE 2>
+ha?
+You're bad debts!!!!!!!!
+<CASE_END>
+
+<1.CASE 3>
+I don't know what you say.
+<CASE_END>
+
+<CASE_TERMINAL>

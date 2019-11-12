@@ -1,14 +1,14 @@
 
 #include "function.h"
 
-void initialize(){
+void initialize(int *c_flag, int *lc_flag){
 
 	setlocale(LC_ALL,"");
   start_color();					//カラー属性を扱うための初期化
-  initscr();							//スクリーン初期化
-  noecho();								//端末上に入力文字を表示しない
+  initscr();							//スクリーン初期化(ncurses.h)
+  noecho();								//端末上に入力文字を表示しない(ncurses.h)
   
-  case_flag=0;
-  lcase_flag=0;
+  *case_flag=OFF;
+  *lcase_flag=ON;
 
 }
