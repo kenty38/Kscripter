@@ -7,7 +7,7 @@ do you know which type i like idol type?
 (3)passion
 <SELECT_END>
 
-<CASE_LAUNCH>
+<<CASE_LAUNCH>>
 
 <1.CASE 1>
 good!
@@ -19,7 +19,7 @@ so,who idol do you like?
 (3)rina tada
 <SELECT_END>
 
-<CASE_LAUNCH>
+<<CASE_LAUNCH>>
 
 <2.CASE 1>
 Oh,Majestic!!!!
@@ -35,7 +35,7 @@ she is a lock'n roll girl.
 she is real cool.
 <CASE_END>
 
-<CASE_TERMINAL>
+<<CASE_TERMINAL>>
 
 <CASE_END>
 
@@ -49,7 +49,7 @@ oh,passion...
 i like cool.
 <CASE_END>
 
-<CASE_TERMINAL>
+<<CASE_TERMINAL>>
 
 by the way,i want to know you.
 which idol types do you like?
@@ -60,7 +60,7 @@ which idol types do you like?
 (3)passion
 <SELECT_END>
 
-<CASE_LAUNCH>
+<<CASE_LAUNCH>>
 
 <1.CASE 1>
 Fantastic!!!!!!
@@ -77,7 +77,7 @@ do you like "Yuko Hori"?
 dre you a psycicker?
 <CASE_END>
 
-<CASE_TERMINAL>
+<<CASE_TERMINAL>>
 
 -----------------------
 aaaaaaa

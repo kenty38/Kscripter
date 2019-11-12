@@ -1,14 +1,15 @@
 
 #include "function.h"
 
-void dis_pause(int Lline,char now[LINE_MAX][N]);
+void file_open(char *filename);
+void display_clear_and_copy(int count, char back[LINE_MAX][N],char now[LINE_MAX][N]);
+void finish(void);
+
 
 int main(void){
   
-  int i;
   int Load_count=0;                //何行読み込んだかを記憶しておく変数
-  int line_length;								        //文字配列の長さを格納する変数
-  //int select_num;					        //選択肢の個数(10個まで)
+  int line_length;								 //文字配列の長さを格納する変数
   int ch;									        //getch()の中身を保存する関数    
   
   char origin[N];					        //txtから一行コピーした文字配列
@@ -16,29 +17,21 @@ int main(void){
   char nowlog[LINE_MAX][N];       //映しだされている画面の文字を格納
   char backlog[LINE_MAX][N];			//バックログ表示に用いる文字列
   
-  char fname[]="text/text2.txt";
+  char fname[]="text/text2.txt";  //コマンドライン引数で与えるため、後々消去
   
   bool select_flag=false;			        //false:SELECTなし , true:SELECTあり
-  bool if_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
+  bool case_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
   bool skip_flag=false;
   
-  int case_flag;				//<CASE_LAUNCH> , <makeCASE_TERMINAL>用のフラグ 
-  int lcase_flag;				//<X.CASE Y> , <CASE_END>用のフラグ (2つともinitialize.cで初期化)
 
   //ファイルを開く。失敗するとNULLを返す
-  fp=fopen(fname,"r");
-  if(fp==NULL){
-    printf("%s file not open!\n",fname);
-    exit(1);
-  }
-  
+  file_open(fname);
   
 	//初期化
 	initialize();
 
   //タイトル画面作成
   Load_first_display();
-
   
 	//<<txtデータが末端に行くまで繰り返す>>
   while(fgets(origin,N,fp)!=NULL){
@@ -47,36 +40,27 @@ int main(void){
     if(*origin=='\n')
     	continue;
     
-    //nowlogが24行に達した時、今までのログをバックログ文字配列に格納し、
-    //バックログ呼び出し時にはbacklogを用いる。
-    //これは文字が画面にいっぱいになるたびに繰り返される
-    if(Load_count%LINE_MAX==0){
-      erase();
-      for(i=0;i<LINE_MAX;i++)
-        strcpy(backlog[i],nowlog[i]);
-    }
+    //画面がいっぱいになったら画面をクリアし、バックログを保存
+    display_clear_and_copy(Load_count, backlog, nowlog);
       
     //一行の長さを図る(\n込み)
     line_length=strlen(origin);
   
-    //<<SELECT管理>>
+    //SELECTを見つけたらSELECT_ENDまで読み込み一気に出力する
     if(select_opt(origin, &select_flag, &case_flag, &lcase_flag, &Load_count, nowlog)==REACT)
       continue;
-    //<<SELECT終了>>
     
-    //<<CASE管理>>
-    if(case_binary(origin, &case_flag, &lcase_flag, case_pattern, &if_start, Load_count, nowlog, backlog)==REACT)
+    //CASE関連を処理する関数群
+    if(case_binary(origin, &case_flag, &lcase_flag, case_pattern, &case_start, Load_count, nowlog, backlog)==REACT)
       continue;
-    //<<CASE終了>>
 	    
-    //画面出力(case_binaryにもgetchがあるため、その関数からリアクションがある場合はgetchを起動させない(おそらく))
-    if(if_start==false)
+    //画面出力(case_binaryにもgetchがあるため、その関数からリアクションがある場合はgetchを起動させない(おそらく)(?))
+    if(case_start==false)
     	ch=getch();
     else
-      if_start=false;
+      case_start=false;
       
-    switch(ch){
-    	
+    switch(ch){    	
     	case 'b':
     	  b_log(backlog, nowlog, &Load_count);
     	  continue;
@@ -95,22 +79,45 @@ int main(void){
     		break;
     }
     
-    //一つ前のバイト数を覚えさせておく
-    before_pos=ftell(fp);
-      
+    //一つ前のバイト数を覚えさせておく(?)
+    before_pos=ftell(fp);     
   }
  	
  	//erase();//文字を消去
- 	getch();
- 	fclose(fp);
- 	endwin();
+ 	finish();
 }
 
+
 //----------<<function>>--------------------------------------------------
+void file_open(char *filename){
+  fp=fopen(filename,"r");
+  if(fp==NULL){
+    printf("%s file not open!\n",filename);
+    exit(1);
+  }
+}
+
+void display_clear_and_copy(int count, char back[LINE_MAX][N],char now[LINE_MAX][N]){
+  int i;
+  
+  if(count%LINE_MAX==0){
+    erase();
+    for(i=0;i<LINE_MAX;i++)
+      strcpy(back[i],now[i]);
+  }
+}
+
 void write_nowlog(int line,char a_now[LINE_MAX][N]){
 	int i;
 	
 	for(i=0;i<line%LINE_MAX;i++)
     printw("%s",a_now[i]);
-
 }
+
+void finish(void){
+  getch();
+ 	fclose(fp);
+ 	endwin();
+}
+
+
