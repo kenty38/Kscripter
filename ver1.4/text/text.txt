@@ -1,0 +1,22 @@
+i love idolm@ster!!!
+do you know which type i like idol type?
+<SELECT>
+(1)cool
+(2)cute
+(3)passion
+<SELECT_END>
+<CASE_LAUNCH>
+<CASE 1>
+good!!!!!
+<CASE_END>
+<CASE 2>
+oh,no.
+i like cool.
+<CASE_END>
+<CASE 3>
+oh,no.
+i like cool.
+<CASE_END>
+<CASE_TERMINAL>
+i want to know you.
+which idol types dou you like?
