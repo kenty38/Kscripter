@@ -1,6 +1,7 @@
 
 #include "function.h"
 
+void create_frame();
 void file_open(char *filename);
 void display_clear_and_copy(bool s_flag, int *count, char back[LINE_MAX][N],char now[LINE_MAX][N]);
 void finish(void);
@@ -35,6 +36,7 @@ int main(void){
   
 	//<<txtデータが末端に行くまで繰り返す>>
   while(fgets(origin,N,fp)!=NULL){
+    create_frame();
     
     //改行文字のみの行は無視
     if(*origin=='\n')
@@ -89,6 +91,10 @@ int main(void){
 
 
 //----------<<function>>--------------------------------------------------
+void create_frame(){
+
+}
+
 void file_open(char *filename){
   fp=fopen(filename,"r");
   if(fp==NULL){
