@@ -2,7 +2,7 @@
 #include "function.h"
 
 void file_open(char *filename);
-void display_clear_and_copy(int count, char back[LINE_MAX][N],char now[LINE_MAX][N]);
+void display_clear_and_copy(bool s_flag, int *count, char back[LINE_MAX][N],char now[LINE_MAX][N]);
 void finish(void);
 
 
@@ -17,7 +17,7 @@ int main(void){
   char nowlog[LINE_MAX][N];       //映しだされている画面の文字を格納
   char backlog[LINE_MAX][N];			//バックログ表示に用いる文字列
   
-  char fname[]="text/text2.txt";  //コマンドライン引数で与えるため、後々消去
+  char fname[]="text/kazu.txt	";  //コマンドライン引数で与えるため、後々消去
   
   bool select_flag=false;			        //false:SELECTなし , true:SELECTあり
   bool case_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
@@ -41,7 +41,7 @@ int main(void){
     	continue;
     
     //画面がいっぱいになったら画面をクリアし、バックログを保存
-    display_clear_and_copy(Load_count, backlog, nowlog);
+    display_clear_and_copy(select_flag,&Load_count, backlog, nowlog);
       
     //一行の長さを図る(\n込み)
     line_length=strlen(origin);
@@ -97,13 +97,18 @@ void file_open(char *filename){
   }
 }
 
-void display_clear_and_copy(int count, char back[LINE_MAX][N],char now[LINE_MAX][N]){
+void display_clear_and_copy(bool s_flag, int *count, char back[LINE_MAX][N],char now[LINE_MAX][N]){
   int i;
   
-  if(count%LINE_MAX==0){
+  if(*count%LINE_MAX==0){
     erase();
-    for(i=0;i<LINE_MAX;i++)
+    for(i=0;i<LINE_MAX;i++){
       strcpy(back[i],now[i]);
+  	}
+  	*count=0;
+  	
+  	if(s_flag==true && *count == 0)
+  		*count++;	
   }
 }
 

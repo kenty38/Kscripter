@@ -13,16 +13,15 @@
 
 int select_opt(char original[], bool *flag,int *cflag,int *lcflag,int *Lline,char now[LINE_MAX][N]){
 
-  if(strcmp(original,"<SELECT>\n")==SAME && *cflag==*lcflag){          //originが<SELECT>の時 
+  if(strcmp(original,"<SELECT>\n")==SAME && *cflag==*lcflag){         //originが<SELECT>の時 
     *flag=true;
     //もしif文がLINE_MAXを超過するならば、nowlogを新しいものに切り替える
-    if(*Lline%LINE_MAX>=LINE_MAX-2){
-      while(*Lline==LINE_MAX)
-        *Lline=*Lline+1;
-      
+    if(*Lline%LINE_MAX >= LINE_MAX-3){
+    	*lLite=0;   
       return REACT;
     }
   }
+  
   else if(strcmp(original,"<SELECT_END>\n")==SAME){ //originが<SELECT_END>の時
     *flag=false;
     usleep(1*90000);

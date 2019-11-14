@@ -6,7 +6,7 @@ Who is your great senior laboratry member?
 (3)kazutoshi
 <SELECT_END>
 
-<CASE_LAUNCH>
+<<CASE_LAUNCH>>
 
 <1.CASE 1>
 That's right!!!
@@ -23,4 +23,4 @@ You're bad debts!!!!!!!!
 I don't know what you say.
 <CASE_END>
 
-<CASE_TERMINAL>
+<<CASE_TERMINAL>>

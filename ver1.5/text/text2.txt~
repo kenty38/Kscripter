@@ -1,13 +1,13 @@
 i love idolm@ster!!!
-do you know which type i like idol type?
 
 <SELECT>
+do you know which type i like idol type?
 (1)cool
 (2)cute
 (3)passion
 <SELECT_END>
 
-<CASE_LAUNCH>
+<<CASE_LAUNCH>>
 
 <1.CASE 1>
 good!

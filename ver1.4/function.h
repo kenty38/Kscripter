@@ -7,7 +7,7 @@
 
 #define N 256
 
-#define LINE_MAX 8
+#define LINE_MAX 10
 
 #define SAME 0
 
