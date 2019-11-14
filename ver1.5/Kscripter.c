@@ -17,7 +17,7 @@ int main(void){
   char nowlog[LINE_MAX][N];       //映しだされている画面の文字を格納
   char backlog[LINE_MAX][N];			//バックログ表示に用いる文字列
   
-  char fname[]="text/kazu.txt	";  //コマンドライン引数で与えるため、後々消去
+  char fname[]="text/kazu.txt";  //コマンドライン引数で与えるため、後々消去
   
   bool select_flag=false;			        //false:SELECTなし , true:SELECTあり
   bool case_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
