@@ -5,13 +5,14 @@
 #include<unistd.h>
 #include<locale.h>
 
-#define N 256
-
-#define LINE_MAX 10
+#define N 80
+#define LINE_MAX 8
 
 #define SAME 0
-
 #define REACT -1
+
+#define TEXT_X 14
+#define TEXT_Y  5
 
 FILE *fp;
 
@@ -26,6 +27,8 @@ long before_fp_pos;        //一つ前のfpの位置を保存
 extern void initialize(void);
 
 extern void Load_first_display(void);
+
+extern void create_AA_and_frame(char *filename);
 
 extern int Load(void);
 

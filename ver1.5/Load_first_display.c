@@ -48,32 +48,17 @@ void Load_first_display(void){
   refresh();
   usleep(2*100000);	
 	erase();
+	
+	create_AA_and_frame("display/frame.txt");
 }
 
 
 //-------------------<function>-------------------
 void display_title(char *titl, char *star, char *s_lo, char *s_ex){
-	int i=0;
-	char line[N]  ;
 	
-	char *filename="display/p_l_s.txt";
-	FILE *fp2;
+	//titleのAA記述
+	create_AA_and_frame("display/p_l_s.txt");
 	
-	fp2=fopen(filename,"r");
-	
-	if(fp2==NULL){
-    printf("%s file not open!\n",filename);
-    endwin();
-    exit(1);
-  }
-	
-	while(fgets(line,N,fp2)!=NULL){
-	
-	  mvprintw(i,1,line);
-	  i++;
-	}
-
-  //printw(titl);
 	mvprintw(10,3,star);
 	mvprintw(12,3,s_lo);
 	mvprintw(14,3,s_ex);

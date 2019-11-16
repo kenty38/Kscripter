@@ -18,7 +18,7 @@ int main(void){
   char nowlog[LINE_MAX][N];       //映しだされている画面の文字を格納
   char backlog[LINE_MAX][N];			//バックログ表示に用いる文字列
   
-  char fname[]="text/kazu.txt";  //コマンドライン引数で与えるため、後々消去
+  char fname[]="text/text2.txt";  //コマンドライン引数で与えるため、後々消去
   
   bool select_flag=false;			        //false:SELECTなし , true:SELECTあり
   bool case_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
@@ -36,7 +36,6 @@ int main(void){
   
 	//<<txtデータが末端に行くまで繰り返す>>
   while(fgets(origin,N,fp)!=NULL){
-    create_frame();
     
     //改行文字のみの行は無視
     if(*origin=='\n')
@@ -114,15 +113,19 @@ void display_clear_and_copy(bool s_flag, int *count, char back[LINE_MAX][N],char
   	*count=0;
   	
   	if(s_flag==true && *count == 0)
-  		*count++;	
+  		*count++;
+  		
+  	create_AA_and_frame("display/frame.txt");
   }
+  
 }
 
 void write_nowlog(int line,char a_now[LINE_MAX][N]){
 	int i;
+	create_AA_and_frame("display/frame.txt");
 	
 	for(i=0;i<line%LINE_MAX;i++)
-    printw("%s",a_now[i]);
+    mvprintw(TEXT_X + i,TEXT_Y,"%s",a_now[i]);
 }
 
 void finish(void){

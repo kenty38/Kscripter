@@ -12,7 +12,16 @@ void Load_first_display(void){
 
 	char fname[]="save/save.txt";
 	
-	char title[]= {"title display\n\n\n\n\n\n\n"};
+	char title[]= {"
+ _  __              _       _            
+| |/ /             (_)     | |           
+| ' / ___  ___ _ __ _ _ __ | |_ ___ _ __ 
+|  < / __|/ __| '__| | '_ \| __/ _ \ '__|
+| . \\__ \ (__| |  | | |_) | ||  __/ |   
+|_|\_\___/\___|_|  |_| .__/ \__\___|_|   
+                     | |                 
+                     |_|                 
+  "};
 	char start[]= {"(s)start\n\n"};
 	char load[]=  {"(l)load\n\n"};
 	char s_exit[]={"(e)exit\n\n"};

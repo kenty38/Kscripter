@@ -33,7 +33,7 @@ int select_opt(char original[], bool *flag,int *cflag,int *lcflag,int *Lline,cha
     if(*flag==true){
       //originが<SELECT>文と同じ時は出力しない
       if(strcmp(original,"<SELECT>\n")!=SAME){
-        printw("%s",original);
+        mvprintw(TEXT_X + *Lline ,TEXT_Y,"%s",original);
         strcpy(now[(*Lline)%LINE_MAX],original);
         *Lline=*Lline+1;
         //printw("%s\n",now[*Lline-1]);
