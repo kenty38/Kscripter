@@ -5,14 +5,26 @@
 #include<unistd.h>
 #include<locale.h>
 
-#define N 80
+#define FRAME_FILENAME "display/frame.txt"
+#define TITLE_FILENAME "display/p_l_s.txt"
+#define SAVE_FILENAME  "save/save.txt"
+#define AA_FILENAME    "display/monor.txt"
+
+#define N 256
 #define LINE_MAX 8
+#define JAPANESE_BYTE 3
 
 #define SAME 0
 #define REACT -1
 
 #define TEXT_X 14
 #define TEXT_Y  5
+
+#define AA_X 7
+#define AA_Y 9
+
+#define MESSAGE_LAST_Y 61
+#define FRAME_LAST_Y 63
 
 FILE *fp;
 
@@ -28,7 +40,9 @@ extern void initialize(void);
 
 extern void Load_first_display(void);
 
-extern void create_AA_and_frame(char *filename);
+extern void create_frame(char *filename);
+
+extern void draw_AA(int x, int y, char *filename);
 
 extern int Load(void);
 

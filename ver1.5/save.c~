@@ -17,7 +17,7 @@ int save(long byte_num,int cflag,int lcflag,int Lline,char now[LINE_MAX][N]){
 		//ファイルのどこまで進んだかを保存
 		fprintf(fp_save,"%ld,%d,%d\n",byte_num,cflag,lcflag);
 		
-		display_save_string_string();
+		display_save_string();
 		write_nowlog(Lline,now);
 		
 		fseek(fp,before_fp_pos,SEEK_SET);
@@ -34,4 +34,5 @@ void display_save_string(void){
 	refresh();
 	sleep(2);
 	erase();
+	create_AA_and_frame(FRAME_FILENAME);
 }

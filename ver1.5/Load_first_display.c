@@ -2,15 +2,13 @@
 #include "function.h"
 
 void display_title(char *titl, char *star, char *s_lo, char *s_ex);
-void load_savedate(long *L_byte, char *filename);
+void load_savedate(long *L_byte);
 
 
 void Load_first_display(void){
 	int ch;
 
   long load_byte;
-
-	char fname[]="save/save.txt";
 	
 	char *title={'\0'};
 	char start[]= {"(s)start\n\n"};
@@ -30,7 +28,7 @@ void Load_first_display(void){
 			
 			case 'l':
 				printw("loading...\n");
-  			load_savedate(&load_byte,fname);
+  			load_savedate(&load_byte);
 				break;
 			
 			case 'e':
@@ -49,7 +47,8 @@ void Load_first_display(void){
   usleep(2*100000);	
 	erase();
 	
-	create_AA_and_frame("display/frame.txt");
+	create_frame(FRAME_FILENAME);
+	draw_AA(AA_X,AA_Y,AA_FILENAME);
 }
 
 
@@ -57,7 +56,7 @@ void Load_first_display(void){
 void display_title(char *titl, char *star, char *s_lo, char *s_ex){
 	
 	//titleのAA記述
-	create_AA_and_frame("display/p_l_s.txt");
+	create_frame(TITLE_FILENAME);
 	
 	mvprintw(10,3,star);
 	mvprintw(12,3,s_lo);
@@ -67,13 +66,13 @@ void display_title(char *titl, char *star, char *s_lo, char *s_ex){
 }
 
 
-void load_savedate(long *L_byte, char *filename){
+void load_savedate(long *L_byte){
   FILE *fp_load;
   
-  fp_load=fopen(filename,"r");		//ファイルを開く。失敗するとNULLを返す
+  fp_load=fopen(SAVE_FILENAME,"r");		//ファイルを開く。失敗するとNULLを返す
  	
  	if(fp_load==NULL){
-    printf("%s file not open!\n",filename);
+    printf("%s file not open!\n",SAVE_FILENAME);
     exit(1);
   }
   			

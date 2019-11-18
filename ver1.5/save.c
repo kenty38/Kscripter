@@ -34,4 +34,5 @@ void display_save_string(void){
 	refresh();
 	sleep(2);
 	erase();
+	create_frame(FRAME_FILENAME);
 }

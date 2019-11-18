@@ -15,11 +15,18 @@ void write_text(int length,char original[],char now[LINE_MAX][N],int *Lline){
   
   strcpy(now[(*Lline)%LINE_MAX],original);
   //printw("Load_line=%d\n",*Lline);
-  for(i=0;i<length;i++){
-    mvprintw(TEXT_X+ *Lline,TEXT_Y + i,"%c",original[i]);
+  i=0;
+  while(i<length){
+  	if(i == length-1)
+  		mvprintw(TEXT_X+ *Lline,TEXT_Y + i,"%c",original[i]);
+  	else	
+    	mvprintw(TEXT_X+ *Lline,TEXT_Y + i,"%c%c%c",original[i],original[i+1],original[i+2]);
     refresh();
-    usleep(1*30000);
+    usleep(1*60000);
+    i=i+JAPANESE_BYTE;
   }
+  mvprintw(TEXT_X+ *Lline,MESSAGE_LAST_Y,"| |");
+
   *Lline=*Lline+1;
   
   //最終行ですぐに画面を消去しないようにする

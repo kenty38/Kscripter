@@ -1,7 +1,7 @@
 
 #include "function.h"
 
-void create_AA_and_frame(char *filename){
+void create_frame(char *filename){
 	int i=0;
 	char line[N]  ;
 	

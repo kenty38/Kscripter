@@ -14,11 +14,11 @@ int main(void){
   int ch;									        //getch()の中身を保存する関数    
   
   char origin[N];					        //txtから一行コピーした文字配列
-  char case_pattern[N];		        //条件分岐の先頭へ移動するために必要なもの
-  char nowlog[LINE_MAX][N];       //映しだされている画面の文字を格納
-  char backlog[LINE_MAX][N];			//バックログ表示に用いる文字列
+  char case_pattern[N]={'\0'};		        //条件分岐の先頭へ移動するために必要なもの
+  char nowlog[LINE_MAX][N]={'\0'};       //映しだされている画面の文字を格納
+  char backlog[LINE_MAX][N]={'\0'};			//バックログ表示に用いる文字列
   
-  char fname[]="text/text2.txt";  //コマンドライン引数で与えるため、後々消去
+  char fname[]="text/japanese.txt";  //コマンドライン引数で与えるため、後々消去
   
   bool select_flag=false;			        //false:SELECTなし , true:SELECTあり
   bool case_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
@@ -36,11 +36,10 @@ int main(void){
   
 	//<<txtデータが末端に行くまで繰り返す>>
   while(fgets(origin,N,fp)!=NULL){
-    
     //改行文字のみの行は無視
     if(*origin=='\n')
     	continue;
-    
+		system("echo $origin > check.txt");
     //画面がいっぱいになったら画面をクリアし、バックログを保存
     display_clear_and_copy(select_flag,&Load_count, backlog, nowlog);
       
@@ -90,9 +89,7 @@ int main(void){
 
 
 //----------<<function>>--------------------------------------------------
-void create_frame(){
 
-}
 
 void file_open(char *filename){
   fp=fopen(filename,"r");
@@ -115,17 +112,20 @@ void display_clear_and_copy(bool s_flag, int *count, char back[LINE_MAX][N],char
   	if(s_flag==true && *count == 0)
   		*count++;
   		
-  	create_AA_and_frame("display/frame.txt");
+  	create_frame(FRAME_FILENAME);
+  	draw_AA(AA_X,AA_Y,AA_FILENAME);
   }
   
 }
 
 void write_nowlog(int line,char a_now[LINE_MAX][N]){
 	int i;
-	create_AA_and_frame("display/frame.txt");
+	create_frame(FRAME_FILENAME);
 	
-	for(i=0;i<line%LINE_MAX;i++)
-    mvprintw(TEXT_X + line,TEXT_Y,"%s",a_now[i]);
+	for(i=0;i<line%LINE_MAX;i++){
+    mvprintw(TEXT_X + i,TEXT_Y,"%s",a_now[i]);
+  	mvprintw(TEXT_X + i ,MESSAGE_LAST_Y ,"| |");
+  }
 }
 
 void finish(void){
