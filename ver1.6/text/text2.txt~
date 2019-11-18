@@ -1,0 +1,107 @@
+i love idolm@ster!!!
+
+<SELECT>
+do you know which type i like idol type?
+(1)cool
+(2)cute
+(3)passion
+<SELECT_END>
+
+<<CASE_LAUNCH>>
+
+<1.CASE 1>
+good!
+so,who idol do you like?
+
+<SELECT>
+(1)ryo matsunaga
+(2)rin shibuya
+(3)rina tada
+<SELECT_END>
+
+<<CASE_LAUNCH>>
+
+<2.CASE 1>
+Oh,Majestic!!!!
+<CASE_END>
+
+<2.CASE 2>
+she is very popular.
+she is a great idol.
+<CASE_END>
+
+<2.CASE 3>
+she is a lock'n roll girl.
+she is real cool.
+<CASE_END>
+
+<<CASE_TERMINAL>>
+
+<CASE_END>
+
+<1.CASE 2>
+oh,cute...
+i like cool.
+<CASE_END>
+
+<1.CASE 3>
+oh,passion...
+i like cool.
+<CASE_END>
+
+<<CASE_TERMINAL>>
+
+by the way,i want to know you.
+which idol types do you like?
+
+<SELECT>
+(1)cool
+(2)cute
+(3)passion
+<SELECT_END>
+
+<<CASE_LAUNCH>>
+
+<1.CASE 1>
+Fantastic!!!!!!
+this is miracle.
+<CASE_END>
+
+<1.CASE 2>
+do you like "Nana Abe"?
+mimimin? mimimin?
+<CASE_END>
+
+<1.CASE 3>
+do you like "Yuko Hori"?
+dre you a psycicker?
+<CASE_END>
+
+<<CASE_TERMINAL>>
+
+-----------------------
+aaaaaaa
+bbbbbbb
+ccccccc
+ddddddd
+eeeeeee
+fffffff
+ggggggg
+hhghhhhhh
+arhaefg
+ahtshts
+jstyyj
+jysdrj
+dyjdyj
+dyjsdyj
+sdrkfiltuyh
+lyhuilk
+igy
+
+
+
+
+
+
+
+
