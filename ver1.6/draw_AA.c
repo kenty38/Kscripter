@@ -6,11 +6,7 @@ void draw_AA(int x, int y, char *filename){
 	char line[N];
 	FILE *fp2;
 	
-	fp2=fopen(filename,"r");
-  if(fp2==NULL){
-    printf("%s file not open!\n",filename);
-    exit(1);
-  }
+	file_open(filename,&fp2);
   
   while(fgets(line,N,fp2)!=NULL){
 	

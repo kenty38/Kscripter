@@ -2,7 +2,7 @@
 #include "function.h"
 
 void create_frame();
-void file_open(char *filename);
+void file_open(char *filename, FILE **f_p);
 void display_clear_and_copy(bool s_flag, int *count, char back[LINE_MAX][N],char now[LINE_MAX][N]);
 void finish(void);
 
@@ -26,7 +26,7 @@ int main(void){
   
 
   //ファイルを開く。失敗するとNULLを返す
-  file_open(fname);
+  file_open(fname, &fp);
   
 	//初期化
 	initialize();
@@ -75,7 +75,10 @@ int main(void){
     		continue;
     		
     	default:
-    		write_text(line_length, origin, nowlog, &Load_count);
+    		if(line_length/JAPANESE_BYTE <= TERMINAL_STRING_MAX)
+    			write_text(line_length, origin, nowlog, &Load_count);
+    		else
+    			write_text_new_line(line_length, origin, nowlog, &Load_count, backlog);
     		break;
     }
     
@@ -91,9 +94,9 @@ int main(void){
 //----------<<function>>--------------------------------------------------
 
 
-void file_open(char *filename){
-  fp=fopen(filename,"r");
-  if(fp==NULL){
+void file_open(char *filename, FILE **f_p){
+  *f_p=fopen(filename,"r");
+  if((*f_p)==NULL){
     printf("%s file not open!\n",filename);
     exit(1);
   }

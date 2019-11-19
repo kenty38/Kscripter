@@ -1,21 +1,18 @@
 
 #include "function.h"
 
-void draw_AA(int x, int y, char *filename){
+void draw_AA(int x, int y, char original[]){
 	int i=0;
 	char line[N];
+	char *filename;
 	FILE *fp2;
 	
-	fp2=fopen(filename,"r");
-  if(fp2==NULL){
-    printf("%s file not open!\n",filename);
-    exit(1);
-  }
+	file_open(filename,&fp2);
   
   while(fgets(line,N,fp2)!=NULL){
 	
 	  mvprintw(x+i,y,line);
-	  mvprint(x+i,FRAME_LAST_Y,"|");
+	  mvprintw(x+i,FRAME_LAST_Y,"|");
 	  i++;
 	}
 	

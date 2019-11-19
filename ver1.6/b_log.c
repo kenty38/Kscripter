@@ -13,6 +13,7 @@ void b_log(char back[LINE_MAX][N],char now[LINE_MAX][N],int *Lline){
   display_backlog_immd(back);
  
  	create_frame(FRAME_FILENAME);
+ 	draw_AA(AA_X,AA_Y,AA_FILENAME);
  	write_nowlog(*Lline,now);
     
   fseek(fp,before_fp_pos,SEEK_SET);  	    

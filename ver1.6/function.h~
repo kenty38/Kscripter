@@ -11,8 +11,9 @@
 #define AA_FILENAME    "display/monor.txt"
 
 #define N 256
-#define LINE_MAX 8
-#define JAPANESE_BYTE 3
+#define LINE_MAX 7
+
+#define TERMINAL_STRING_MAX 26
 
 #define SAME 0
 #define REACT -1
@@ -25,6 +26,12 @@
 
 #define MESSAGE_LAST_Y 61
 #define FRAME_LAST_Y 63
+
+#define ASCII_LIST_START 33
+#define ASCII_LIST_END 126
+
+#define JCHARACTER_WIDTH 2
+#define JAPANESE_BYTE 3
 
 FILE *fp;
 
@@ -42,7 +49,7 @@ extern void Load_first_display(void);
 
 extern void create_frame(char *filename);
 
-extern void draw_AA(int x, int y, char *filename);
+extern int draw_AA(int x, int y, char *filename);
 
 extern int Load(void);
 
@@ -53,6 +60,8 @@ extern void dis_pause(int Lline,char now[LINE_MAX][N]);
 extern int save(long byte_num,int cflag,int lcflag,int Lline,char now[LINE_MAX][N]);
 
 extern void write_text(int length,char original[],char now[LINE_MAX][N],int *Lline);
+
+extern void write_text_new_line(int length,char original[],char now[LINE_MAX][N],int *Lline,char back[LINE_MAX][N]);
 
 extern int select_opt(char original[],bool *flag,int *cflag,int *lcflag,int *Lline,char now[LINE_MAX][N]);
 

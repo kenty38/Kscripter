@@ -34,6 +34,7 @@ void dis_pause(int Lline,char now[LINE_MAX][N]){
 		break;
 	}
 	
+	draw_AA(AA_X,AA_Y,AA_FILENAME);
 	fseek(fp,before_fp_pos,SEEK_SET);
 }
 
