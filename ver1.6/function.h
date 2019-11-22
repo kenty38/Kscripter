@@ -8,7 +8,8 @@
 #define FRAME_FILENAME "display/frame.txt"
 #define TITLE_FILENAME "display/p_l_s.txt"
 #define SAVE_FILENAME  "save/save.txt"
-#define AA_FILENAME    "display/monor.txt"
+#define AA_FILENAME    "display/null_screen.txt"
+#define DISPLAY_PATH   "display/"
 
 #define N 256
 #define LINE_MAX 7
@@ -17,6 +18,7 @@
 
 #define SAME 0
 #define REACT -1
+#define AA_DRAW -1
 
 #define TEXT_X 14
 #define TEXT_Y  5
@@ -41,6 +43,7 @@ int lcase_flag;				//<X.CASE Y> , <CASE_END>用のフラグ (2つともinitializ
 
 long before_fp_pos;        //一つ前のfpの位置を保存
 
+char now_AA_file[20];           //最後に描画したAAファイルの名前
 
 //function
 extern void initialize(void);
@@ -50,6 +53,8 @@ extern void Load_first_display(void);
 extern void create_frame(char *filename);
 
 extern void draw_AA(int x, int y, char *filename);
+
+extern int draw_AA_form_text(int x, int y, char original[]);
 
 extern int Load(void);
 

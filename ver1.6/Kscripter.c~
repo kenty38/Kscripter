@@ -18,12 +18,13 @@ int main(void){
   char nowlog[LINE_MAX][N]={'\0'};       //映しだされている画面の文字を格納
   char backlog[LINE_MAX][N]={'\0'};			//バックログ表示に用いる文字列
   
-  char fname[]="text/japanese.txt";  //コマンドライン引数で与えるため、後々消去
+  char fname[]="text/test_AA.txt";  //コマンドライン引数で与えるため、後々消去
   
   bool select_flag=false;			        //false:SELECTなし , true:SELECTあり
   bool case_start=false;		        //選択肢をキーが押した瞬間に書き始めさせるためのフラグ
   bool skip_flag=false;
   
+  strcpy(now_AA_file,AA_FILENAME);
 
   //ファイルを開く。失敗するとNULLを返す
   file_open(fname, &fp);
@@ -50,8 +51,13 @@ int main(void){
     if(select_opt(origin, &select_flag, &case_flag, &lcase_flag, &Load_count, nowlog)==REACT)
       continue;
     
+      
     //CASE関連を処理する関数群
     if(case_binary(origin, &case_flag, &lcase_flag, case_pattern, &case_start, Load_count, nowlog, backlog)==REACT)
+      continue;
+    
+    //AAを書くかどうか       
+    if(draw_AA_from_text(AA_X,AA_Y,origin,now_AA_file)==AA_DRAW)
       continue;
 	    
     //画面出力(case_binaryにもgetchがあるため、その関数からリアクションがある場合はgetchを起動させない(おそらく)(?))
@@ -98,6 +104,8 @@ void file_open(char *filename, FILE **f_p){
   *f_p=fopen(filename,"r");
   if((*f_p)==NULL){
     printf("%s file not open!\n",filename);
+    usleep(3*1000000);
+    endwin();
     exit(1);
   }
 }
@@ -116,7 +124,7 @@ void display_clear_and_copy(bool s_flag, int *count, char back[LINE_MAX][N],char
   		*count++;
   		
   	create_frame(FRAME_FILENAME);
-  	draw_AA(AA_X,AA_Y,AA_FILENAME);
+  	draw_AA(AA_X,AA_Y,now_AA_file);
   }
   
 }

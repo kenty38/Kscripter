@@ -5,14 +5,11 @@
 *	出力するのに0.3秒かかる。						*
 ***********************************/
 
-
 #include "function.h"
 
 void write_text(int length,char original[],char now[LINE_MAX][N],int *Lline){
   int i;
   int line_row;
-  char *p=original;
-  char tmp[JAPANESE_BYTE];
   //getch();
   
   strcpy(now[(*Lline)%LINE_MAX],original);
