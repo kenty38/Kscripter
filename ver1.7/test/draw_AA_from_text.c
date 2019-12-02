@@ -1,0 +1,28 @@
+
+#include "function.h"
+
+int draw_AA_from_text(int x, int y, char original[]){
+	int i=0;
+	char line[N];
+	char *filename;
+	FILE *fp2;
+	
+	if(strstr(original[],"draw->") == NULL)
+    return NON_DRAW;
+  
+  else{
+  
+    sscanf(original,"draw->%s\n",filename);
+	  file_open(filename,&fp2);
+  
+    while(fgets(line,N,fp2)!=NULL){
+	
+	    mvprintw(x+i,y,line);
+	    mvprintw(x+i,FRAME_LAST_Y,"|");
+	    i++;
+	  }
+	
+	  refresh();
+	  fclose(fp2);
+	}
+}
